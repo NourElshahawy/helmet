@@ -1,0 +1,111 @@
+
+/*! الخطوط */
+/* @font-face {
+    font-family: "font_black";
+    src: url("../assets/fonts/");
+}
+@font-face {
+    font-family: "font_regular";
+    src: url("../assets/fonts/");
+}
+@font-face {
+    font-family: "font_bold";
+    src: url("../assets/fonts/");
+}
+@font-face {
+    font-family: "font_semi-bold";
+    src: url("../assets/fonts/");
+}
+@font-face {
+    font-family: "font_extra-bold";
+    src: url("../assets/fonts/");
+}
+@font-face {
+    font-family: "font_light";
+    src: url("../assets/fonts/");
+}
+@font-face {
+    font-family: "font_medium";
+    src: url("../assets/fonts/");
+} */
+
+/*! الألوان الرئيسية */
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    /* --main-color: ;
+    --second-color: ;
+    --text-color: ; */
+}
+
+/* body {
+    font-family: "Vazirmatn", sans-serif;
+    direction: rtl;
+} */
+
+/* ::selection {
+    background-color: var(--second-color);
+    color: var(--white-color);
+} */
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+button:focus,
+a {
+    outline: none;
+}
+
+button {
+    border: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+/*! Globals */
+.main-container {
+    width: 90%;
+    margin: auto;
+}
