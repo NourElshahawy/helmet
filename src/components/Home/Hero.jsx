@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
-import "../../styles/home/hero.css";
+import "../../styles/layout/home/hero.css";
 
 
 import {
@@ -34,6 +34,7 @@ import {
   STAMP_SCALE_START,
 } from "./heroAnimation.constants";
 import { ScrollTrigger } from "gsap/all";
+import MainBtn from "../ui/MainBtn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -237,10 +238,7 @@ export default function Hero({ hero }) {
       <p className="hero-desc" ref={descRef}>
         {hero.description}
       </p>
-      <Link to={hero.ctaHref} className="main-btn hero-cta" ref={ctaRef}>
-        <i className="fa-solid fa-chevron-left"></i>
-        {hero.ctaLabel}
-      </Link>
+      <MainBtn value={hero.ctaLabel} className="hero-cta" ref={ctaRef} data-hero-item />
 
       {hero.images?.length > 0 && (
         <div className="hero-gallery" ref={galleryRef}>

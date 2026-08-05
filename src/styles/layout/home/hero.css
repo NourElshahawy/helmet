@@ -17,6 +17,8 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  background-size: 300% 100%;
+      animation: gradientText 4s linear infinite;
   -webkit-text-fill-color: transparent;
 }
 
