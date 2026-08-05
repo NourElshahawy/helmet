@@ -1,0 +1,179 @@
+/*! ================================ ProductSec ================================ */
+.productSec .cardSlider {
+    position: relative;
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+    overflow: hidden;
+}
+.productSec .cardSlider figure {
+    height: 350px;
+}
+.productSec .cardSlider .text {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(146, 152, 159, 1), rgba(255, 255, 255, 0.1));
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 15px;
+
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+.productSec .cardSlider:hover .text {
+    opacity: 1;
+    transform: translateY(0);
+}
+.productSec .cardSlider .text h4 {
+    font-size: 25px;
+}
+.productSec .cardSlider .text p {
+    font-size: 20px;
+    color: var(--white-color);
+    overflow: auto;
+}
+.productSec .cardSlider img {
+    transition: transform 0.5s ease;
+}
+
+.productSec .cardSlider:hover img {
+    transform: scale(1.1);
+}
+/*! ================================ warranty ================================ */
+.warranty .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url("../assets/images/bg-warranty.svg");
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    border-radius: 20px;
+}
+.warranty .main-container .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    width: 50%;
+    padding: 15px;
+}
+.warranty .main-container .text h3 {
+    font-size: clamp(23px, 3vw, 50px);
+    background: linear-gradient(to left, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.warranty .main-container .text p {
+    font-size: clamp(18px, 3vw, 30px);
+}
+
+/*! ================================ ContactUs ================================ */
+.ContactUs {
+    background-image: url("../assets/images/bg-ContactUs.svg");
+    background-position: center;
+    background-size: cover;
+    padding: 50px;
+}
+.ContactUs form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ContactUs .content {
+    width: 50%;
+    margin-right: auto;
+    padding: 50px 20px;
+    position: relative;
+}
+.ContactUs .content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(215, 218, 220, 1);
+    width: 70%;
+    height: 115%;
+    z-index: 0;
+    border-radius: 20px 0 0 20px;
+}
+.ContactUs .content::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(174, 132, 30, 1);
+    border-left: 0;
+    border-radius: 0 20px 20px 0;
+    background-color: var(--white-color);
+}
+.ContactUs .content .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    z-index: 5;
+}
+.ContactUs .content .contact-card h4 {
+    font-size: clamp(25px, 3vw, 30px);
+    background: linear-gradient(to left, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ContactUs .content .contact-card .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.ContactUs .content .contact-card .contact-detail span,
+.ContactUs .content .contact-card .social a {
+    background-color: rgba(255, 244, 217, 1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+    transition: .3s;
+}
+.ContactUs .content .contact-card .social a:hover,
+.ContactUs .content .contact-card .contact-detail:hover span {
+    background-color: var(--main-color);
+}
+.ContactUs .content .contact-card .social a:hover i,
+.ContactUs .content .contact-card .contact-detail:hover span i {
+    background: linear-gradient(to bottom, var(--white-color), var(--white-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ContactUs .content .contact-card .contact-detail span i,
+.ContactUs .content .contact-card .social a i {
+    background: linear-gradient(to bottom, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: .3s;
+}
+.ContactUs .content .contact-card .contact-detail p {
+    background: linear-gradient(to left, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.ContactUs .content .contact-card .social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

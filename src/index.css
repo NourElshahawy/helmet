@@ -1,0 +1,270 @@
+
+/*! الخطوط */
+@font-face {
+    font-family: "font_main";
+    src: url("../src/assets/fonts/alfont_com_Hacen-Casablanca-Lt-1.ttf");
+}
+@font-face {
+    font-family: "font_bold";
+    src: url("../src/assets/fonts/ArbFONTS-Hacen Casablanca.ttf");
+}
+
+
+/*! الألوان الرئيسية */
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --main-color: rgba(174, 132, 30, 1);
+    --second-color: rgba(72, 55, 12, 1);
+    /* --text-color: ; */
+}
+
+body {
+    font-family: "font_main", sans-serif;
+    direction: rtl;
+}
+
+::selection {
+    background-color: var(--main-color);
+    color: var(--white-color);
+}
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+button:focus,
+a {
+    outline: none;
+}
+
+button {
+    border: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.input-group label {
+    font-family: "font_bold";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+/*! Globals */
+.main-container {
+    width: 90%;
+    margin: auto;
+}
+.section {
+    margin-block: 80px;
+}
+
+/* ====== Main Btn ======*/
+.main-btn {
+    background-image: linear-gradient(to bottom, var(--main-color), var(--second-color));
+    color: var(--white-color);
+    padding: 7px 10px;
+    border-radius: 15px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+/* shine effect */
+.main-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.5),
+        transparent
+    );
+    transition: .5s;
+    z-index: -1;
+}
+.main-btn:hover::before {
+    left: 100%;
+}
+.main-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+/* ====== Input Group ====== */
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+.input-group label {
+    background: linear-gradient(to left, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(18px, 3vw, 25px);
+}
+.input-group input,
+.input-group textarea,
+.input-group .custom-select select {
+    outline: 0;
+    background-color: var(--white-color);
+    background:
+        linear-gradient(var(--white-color), var(--white-color)) padding-box,
+        linear-gradient(to bottom, var(--main-color), var(--second-color)) border-box;
+    border: 1px solid transparent;
+    padding: 10px;
+    width: 100%;
+    transition: .3s;
+}
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group .custom-select select:focus {
+    box-shadow: 0 0 5px var(--main-color);
+}
+.input-group textarea {
+    resize: none;
+    height: 100px;
+}
+.input-group input::placeholder {
+    font-size: 20px;
+}
+.input-group .custom-select select {
+    appearance: none;
+}
+.input-group .custom-select {
+    position: relative;
+}
+.input-group .custom-select i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background: linear-gradient(to left, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ====== Message Error ====== */
+.input-group .messageError {
+    background-color: #fff5f5;
+    color: #d32f2f;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.input-group .input-error {
+    border: 1px solid #dc3545;
+}
+.input-group .input-error:focus {
+    box-shadow: 0 0 0 3px rgba(220,53,69,.15);
+}
+
+/* ====== Head Title ====== */
+.head-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+    animation: titleFloat 2s ease-in-out infinite;
+}
+.head-title h2 {
+    background: linear-gradient(to left, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(30px, 3vw, 45px);
+
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+
+    animation: gradientText 4s linear infinite;
+}
+.head-title span {
+    width: 40px;
+    height: 5px;
+    background-color: rgba(213, 189, 133, 1);
+    animation: linePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(8px);
+    }
+}
+
+@keyframes linePulse {
+    0%, 100% {
+        width: 40px;
+        opacity: 1;
+    }
+    50% {
+        width: 60px;
+        opacity: 0.5;
+    }
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 300% 50%;
+    }
+}
