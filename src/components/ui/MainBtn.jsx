@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function MainBtn({ value, href, onClick, showIcon = true, className = "", loading }) {
+export default function MainBtn({ value, href, onClick, showIcon = true, className = "", loading, ...rest }) {
     return <>
 
         <>

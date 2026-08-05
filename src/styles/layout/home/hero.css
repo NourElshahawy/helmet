@@ -27,7 +27,7 @@
   font-weight: 500;
   color: #000000E5;
   max-width: 640px;
-  margin: 0 auto 28px;
+  margin: 0 auto 28px !important;
 }
 
 .hero-cta {

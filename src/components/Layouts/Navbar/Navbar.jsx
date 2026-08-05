@@ -36,7 +36,6 @@ export default function Navbar({ nav }) {
             aria-expanded={isMenuOpen}
             aria-label="فتح القائمة"
             onClick={() => setIsMenuOpen((open) => !open)}
-            data-nav-item
           >
             <img src="/assets/menu-icon.svg" alt="menu" className="menu-icon" />
           </button>

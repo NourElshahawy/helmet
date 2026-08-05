@@ -4,6 +4,8 @@ import ContactUs from "../../components/Sections/ContactUs";
 import HexPattern from "../../components/Home/HexPattern";
 import Navbar from "../../components/Layouts/Navbar/Navbar";
 import Hero from "../../components/Home/Hero";
+import About from "../../components/Sections/About";
+import Provide from "../../components/Sections/Provide";
 import { useHomeContent } from "../../hooks/useHomeContent";
 
 export default function Home() {
@@ -20,6 +22,8 @@ export default function Home() {
       <ProductSec />
       <Warranty />
       <ContactUs />
+      <About />
+      <Provide />
     </>
   );
 }
