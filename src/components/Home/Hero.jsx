@@ -1,8 +1,9 @@
 import { useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../../styles/home/hero.css";
+
+
 import {
   ENTRANCE_DURATION,
   ENTRANCE_EASE,
@@ -32,6 +33,7 @@ import {
   STAMP_ROTATE_END,
   STAMP_SCALE_START,
 } from "./heroAnimation.constants";
+import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,0 +1,46 @@
+/* @media (max-width: 1400px) {
+
+} */
+
+
+
+
+/* @media (max-width: 1200px) {
+
+} */
+
+
+
+
+
+@media (max-width: 991px) {
+    .ContactUs .content {
+        width: 100%;
+        margin: auto;
+        margin-top: 30px;
+        padding: 30px 20px;
+    }
+    .ContactUs .content .contact-card {
+        gap: 20px;
+    }
+}
+
+
+
+
+@media (max-width: 767px) {
+    .main-btn {
+        font-size: 15px;
+    }
+    .warranty .main-container .text {
+        width: 100%;
+    }
+}
+
+
+
+
+
+/* @media (max-width: 575px) {
+
+} */
