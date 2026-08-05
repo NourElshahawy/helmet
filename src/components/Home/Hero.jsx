@@ -8,6 +8,10 @@ import {
   ENTRANCE_DURATION,
   ENTRANCE_EASE,
   ENTRANCE_STAGGER,
+  TEXT_STAGGER,
+  TEXT_DURATION,
+  TEXT_EASE,
+  TEXT_Y_START,
   CONVERGE_DURATION,
   CONVERGE_EASE,
   CONVERGE_DELAY,
@@ -35,6 +39,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero({ hero }) {
   const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const descRef = useRef(null);
+  const ctaRef = useRef(null);
   const galleryRef = useRef(null);
   const stampRef = useRef(null);
   const layerRefs = useRef([]); // مصفوفة بكل عناصر الصور
@@ -53,8 +60,18 @@ export default function Hero({ hero }) {
     // عشان نقدر ننضفها كلها بسطر واحد وقت الـ unmount
     const ctx = gsap.context(() => {
       const layers = layerRefs.current;
+      const isMobile = window.innerWidth < 640;
+      const distanceScale = isMobile ? 0.45 : 1;
 
-      // ---------- 1) الحالة الابتدائية (متراكبة فوق بعض) ----------
+      // ---------- 0) الحالة الابتدائية للنص ----------
+      const textEls = [
+        titleRef.current,
+        descRef.current,
+        ctaRef.current,
+      ].filter(Boolean);
+      gsap.set(textEls, { opacity: 0, y: TEXT_Y_START });
+
+      // ---------- 1) الحالة الابتدائية للصور (متراكبة فوق بعض) ----------
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
         gsap.set(layer, {
@@ -77,7 +94,7 @@ export default function Hero({ hero }) {
         });
       }
 
-      // ---------- 2) Timeline رئيسي: Explode ثم Converge ثم Stamp ----------
+      // ---------- 2) Timeline رئيسي: Text ثم Explode ثم Converge ثم Stamp ----------
       const entranceTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -88,6 +105,19 @@ export default function Hero({ hero }) {
         onComplete: startFloatingLoop,
       });
 
+      // مرحلة 0: دخول النص (العنوان + الوصف + الزرار)
+      entranceTl.to(
+        textEls,
+        {
+          opacity: 1,
+          y: 0,
+          duration: TEXT_DURATION,
+          ease: TEXT_EASE,
+          stagger: TEXT_STAGGER,
+        },
+        0,
+      );
+
       // مرحلة 1: انفجار بعيد عن المنتصف
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
@@ -96,8 +126,8 @@ export default function Hero({ hero }) {
           {
             opacity: OPACITY_END,
             scale: SCALE_END,
-            x: config.explodeX,
-            y: config.explodeY,
+            x: config.explodeX * distanceScale,
+            y: config.explodeY * distanceScale,
             rotateX: 0,
             rotateZ: 0,
             duration: ENTRANCE_DURATION,
@@ -113,7 +143,7 @@ export default function Hero({ hero }) {
         entranceTl.to(
           layer,
           {
-            x: config.restX,
+            x: config.restX * distanceScale,
             duration: CONVERGE_DURATION,
             ease: CONVERGE_EASE,
           },
@@ -173,10 +203,11 @@ export default function Hero({ hero }) {
         layers.forEach((layer, i) => {
           const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
           const offsetX =
-            relX * PARALLAX_MAX_OFFSET * config.parallaxFactor + config.restX;
+            relX * PARALLAX_MAX_OFFSET * config.parallaxFactor +
+            config.restX * distanceScale;
           const offsetY =
             relY * PARALLAX_MAX_OFFSET * config.parallaxFactor +
-            config.explodeY;
+            config.explodeY * distanceScale;
 
           quickSetters[i].x(offsetX);
           quickSetters[i].y(offsetY);
@@ -200,9 +231,13 @@ export default function Hero({ hero }) {
 
   return (
     <div className="hero-content" ref={sectionRef}>
-      <h1 className="hero-title">{hero.title}</h1>
-      <p className="hero-desc">{hero.description}</p>
-      <Link to={hero.ctaHref} className="main-btn hero-cta">
+      <h1 className="hero-title" ref={titleRef}>
+        {hero.title}
+      </h1>
+      <p className="hero-desc" ref={descRef}>
+        {hero.description}
+      </p>
+      <Link to={hero.ctaHref} className="main-btn hero-cta" ref={ctaRef}>
         <i className="fa-solid fa-chevron-left"></i>
         {hero.ctaLabel}
       </Link>

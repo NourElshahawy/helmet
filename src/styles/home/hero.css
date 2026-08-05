@@ -51,11 +51,11 @@
   will-change: transform, opacity;
 }
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .hero-title { font-size: 30px; }
   .hero-gallery { height: 280px; }
   .hero-gallery__layer { height: 180px; }
-}
+} */
 
 
 .hero-gallery__stamp {
@@ -71,10 +71,13 @@
 }
 
 @media (max-width: 640px) {
+    .hero-gallery{
+    margin-top: 0;
+  }
+  .hero-gallery__layer { height: 280px; }
   .hero-gallery__stamp {
-    height: 70px;
-    top: 5%;
-    left: 50%;
-    /* transform: translateX(-50%); */
+    height: 80px;
+    top: 41%;
+    left: 10%;
   }
 }
