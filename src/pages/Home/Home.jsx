@@ -1,9 +1,10 @@
-import About from './about-us/About'
-
+import About from "./about-us/About";
+import Provide from "./provide/Provide";
 export default function Home() {
-    return (
-        <div>
-            <About />
-        </div>
-    )
+  return (
+    <>
+      <About />
+      <Provide />
+    </>
+  );
 }
