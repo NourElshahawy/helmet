@@ -1,15 +1,17 @@
-import React from 'react';
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './Components/Layouts/Layout';
-// import Home from './pages/Home/Home';
+import Layout from './components/Layouts/Layout';
+import Home from './pages/Home/Home';
 // import { Toaster } from 'sonner';
 
 
 const router = createBrowserRouter([
-  {path: "", element: <Layout />, children: [
-    // {path: "", element:<Home />},
-  ]}
-])
+  {
+    path: "/",
+    element: <Layout />,
+    children: [{ path: "", element: <Home /> }],
+  },
+]);
 
 
 

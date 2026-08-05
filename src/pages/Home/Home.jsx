@@ -1,9 +1,7 @@
-import React from 'react'
+import { useOutletContext } from "react-router-dom";
+import Hero from "../../components/Home/Hero";
 
 export default function Home() {
-    return (
-        <div>
-        
-        </div>
-    )
+  const { hero } = useOutletContext();
+  return <Hero hero={hero} />;
 }

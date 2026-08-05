@@ -1,0 +1,80 @@
+.hero-content {
+  text-align: center;
+  padding: 40px 24px 0;
+  position: relative;
+}
+
+.hero-title {
+  display: inline-block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(32px, 5vw, 80px);
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #48370C 0%, #AE841E 43.47%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: clamp(14px, 2vw, 24px);
+  font-weight: 500;
+  color: #000000E5;
+  max-width: 640px;
+  margin: 0 auto 28px;
+}
+
+.hero-cta {
+  display: inline-flex;
+}
+
+/* الحاوية: بترسم الـ perspective عشان rotateX تدي إحساس ثلاثي الأبعاد حقيقي */
+.hero-gallery {
+  position: relative;
+  height: 400px;
+  margin-top: 56px;
+  perspective: 1000px;
+}
+
+/* كل طبقة (صورة) فوق بعضها بالظبط قبل ما GSAP يحركهم */
+.hero-gallery__layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 380px;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+@media (max-width: 640px) {
+  .hero-title { font-size: 30px; }
+  .hero-gallery { height: 280px; }
+  .hero-gallery__layer { height: 180px; }
+}
+
+
+.hero-gallery__stamp {
+  position: absolute;
+  top: 140px;
+  left: 50px;
+  /* transform: translateX(-50%); */
+  height: 120px;
+  object-fit: contain;
+  z-index: 10;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .hero-gallery__stamp {
+    height: 70px;
+    top: 5%;
+    left: 50%;
+    /* transform: translateX(-50%); */
+  }
+}

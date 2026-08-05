@@ -1,0 +1,3 @@
+.hm-footer { background: linear-gradient(180deg, var(--hm-gold-dark) 0%, #6B5419 100%); color: var(--hm-white); }
+.hm-footer a { color: var(--hm-white); text-decoration: none; }
+.hm-footer__bottom { border-top: 1px solid rgba(255,255,255,0.2); font-size: 12px; }
