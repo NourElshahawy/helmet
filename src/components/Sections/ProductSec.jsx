@@ -6,9 +6,7 @@ import productImg3 from '../../assets/images/product-3.webp';
 import productImg4 from '../../assets/images/product-4.webp';
 import MainBtn from '../ui/MainBtn';
 
-export default function ProductSec() {
-
-
+export default function ProductSec({className, showButton = true}) {
     const products = [
         {
             img: productImg1,
@@ -33,11 +31,10 @@ export default function ProductSec() {
     ];
 
     return <>
-        <section className='productSec section'>
+        <section className={`productSec section ${className}`}>
             <div className="main-container">
                 <HeadTitle value="المنتجات" />
                 <div className="row g-4">
-
                     {products.map((product, index)=> {
                         return (
                             <div key={index} className="col-sm-6 col-md-4 col-lg-3">
@@ -55,7 +52,11 @@ export default function ProductSec() {
                     })}
                 </div>
 
-                <MainBtn value="عرض جميع المنتجات" className='mx-auto mt-5' />
+                {/* <MainBtn value="عرض جميع المنتجات" className='mx-auto mt-5' /> */}
+
+                {showButton && (
+                    <MainBtn href="/products" value="عرض جميع المنتجات" className='mx-auto mt-5' />
+                )}
             </div>
         </section>
     </>
