@@ -1,6 +1,6 @@
-import "../../styles/about-us/AboutStyle.css";
+import HeadTitle from "../ui/HeadTitle";
 
-function About() {
+export default function About() {
 
   const aboutTitle = "من نحن";
   const aboutContent = `في عالم أصبحت فيه الأجهزة الذكية جزءًا أساسيًا من حياتنا اليومية،
@@ -56,8 +56,9 @@ function About() {
       <div className="about-content">
         <div className="row">
           <div className="col-md-7">
-            <div className="about-content-title">   
-              <h1> {aboutTitle} </h1>
+            <div className="about-content-title">
+              {/* <h1> {aboutTitle} </h1> */}
+              <HeadTitle value="من نحن" />
               <p>
                 {aboutContent}
               </p>
@@ -96,5 +97,3 @@ function About() {
     </section>
   );
 }
-
-export default About;

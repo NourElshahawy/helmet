@@ -1,8 +1,10 @@
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useNavbarEntrance } from "./navbarAnimation";
-import "../../../styles/layout/navbar.css";
 import MainBtn from "../../ui/MainBtn";
+
+
 
 export default function Navbar({ nav }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,18 +12,17 @@ export default function Navbar({ nav }) {
   useNavbarEntrance(navRef);
   if (!nav) return null;
 
-
   return (
     <header className="navbar" ref={navRef}>
       <div className="navbar-container">
         <div className="group-btn">
           <MainBtn
-            value={nav.contactLabel}
+            value={nav.langLabel}
             className="mx-auto mt-5"
             data-nav-item
           />
           <MainBtn
-            value={nav.langLabel}
+            value={nav.contactLabel}
             className="mx-auto mt-5"
             data-nav-item
           />
@@ -44,24 +45,44 @@ export default function Navbar({ nav }) {
         )}
       </div>
 
-      {nav.links?.length > 0 && (
-        <>
-          {/* القايمة المنزلقة نفسها */}
-          <nav className={`navbar-drawer ${isMenuOpen ? "is-open" : ""}`}>
-            {nav.links.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="navbar-drawer__link"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <span className="navbar-drawer__link-shine" />
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </>
-      )}
+      {nav.links?.length > 0 &&
+        createPortal(
+          <>
+            <button
+              type="button"
+              className={`navbar-menu-toggle ${isMenuOpen ? "is-open" : ""}`}
+              aria-expanded={isMenuOpen}
+              aria-label="فتح القائمة"
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              <img
+                src="/assets/menu-icon.svg"
+                alt="menu"
+                className="menu-icon"
+              />
+            </button>
+
+            <nav className={`navbar-drawer ${isMenuOpen ? "is-open" : ""}`}>
+              {nav.links.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="navbar-drawer__link"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <span className="navbar-drawer__link-shine" />
+                  {link.label}
+                </Link>
+              ))}
+
+              <div className="group-btn-drawer">
+                <MainBtn value={nav.contactLabel} data-nav-item />
+                <MainBtn value={nav.langLabel} data-nav-item />
+              </div>
+            </nav>
+          </>,
+          document.body,
+        )}
     </header>
   );
 }

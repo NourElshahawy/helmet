@@ -1,4 +1,18 @@
+@import "./styles/layout/home/hex-pattern.css";
+@import "./styles/layout/navbar.css";
 
 @import "./styles/home.css";
 @import "./styles/responsive.css";
 
+
+
+
+@import "./styles/about-us/AboutStyle.css";
+/* @import "./styles/products/products.css"; */
+@import "./styles/provide/provide.css";
+
+
+/* @import "./styles/contact-us/contact-us.css"; */
+
+
+@import "./styles/layout/footer.css";

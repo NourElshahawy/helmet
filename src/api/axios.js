@@ -1,9 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://your-real-api.com/api",
+    baseURL: "https://helmet.site.jadara.work/api",
     headers: {
-        token: localStorage.getItem("userToken")
+        Accept: "application/json",
+        "Accept-Language": "ar",
+        // token: localStorage.getItem("userToken")
     }
 });
 

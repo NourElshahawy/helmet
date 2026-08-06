@@ -10,43 +10,24 @@
 .hm-top-section::after {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #EBF1F8 0%, rgba(235, 241, 248, 0) 70%);
-  filter: blur(60px);
+  width: 500px;
+  height: 100vh;
+  border-radius: 0;
+  background: radial-gradient(ellipse, rgba(235, 241, 248, 0.9) 0%, rgba(235, 241, 248, 0) 70%);
+  filter: blur(30px);
   pointer-events: none;
   z-index: 0;
   animation: hm-blob-float 12s ease-in-out infinite;
 }
 
 .hm-top-section::before {
-  top: 100px;
   right: -200px;
-  height: 100vh;
 }
 
 .hm-top-section::after {
   bottom: -200px;
   left: -200px;
-  background: radial-gradient(circle, #f0dfae70 0%, rgba(240, 223, 174, 0) 70%);
   animation-delay: -6s;
-}
-
-/* بلوب تالت دهبي خفيف في النص، لإحساس أعمق بالتدرج */
-.hm-top-section__glow {
-  content: "";
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  width: 500px;
-  height: 500px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 162, 39, 0.12) 0%, rgba(201, 162, 39, 0) 70%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
 }
 
 @keyframes hm-blob-float {
@@ -71,7 +52,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* pointer-events: none; */
   z-index: 1;
 }
 
@@ -86,19 +66,44 @@
 }
 
 .hex-row:last-child {
-  margin-bottom: -100px; 
+  margin-bottom: -100px;
 }
 
 .hex-row--offset {
-  margin-right: 100px; 
+  margin-right: 100px;
 }
-
 .hex {
   display: block;
   overflow: visible;
   pointer-events: auto;
+
+  opacity: 0;
+  transform: scale(0.85);
+  animation:
+    hex-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    hex-breathe 6s ease-in-out infinite;
+  animation-delay: var(--hex-delay, 0s), var(--hex-delay, 0s);
 }
 
+@keyframes hex-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hex-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
 .hex__shape {
   fill: transparent;
   stroke: #000000;
@@ -110,4 +115,26 @@
 .hex:hover .hex__shape {
   fill: rgba(201, 214, 232, 0.15);
   stroke: #9CB3D1;
+}
+
+/* احترام تفضيل تقليل الحركة — الأنيميشن بيتلغي والأشكال تظهر فورًا */
+@media (prefers-reduced-motion: reduce) {
+  .hex {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+  .hm-top-section::before,
+  .hm-top-section::after {
+    animation: none;
+  }
+}
+
+/* على الموبايل: مساحة أصغر للبلوبات عشان الأداء والتناسب */
+@media (max-width: 640px) {
+  .hm-top-section::before,
+  .hm-top-section::after {
+    width: 260px;
+    filter: blur(20px);
+  }
 }

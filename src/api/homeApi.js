@@ -18,7 +18,7 @@ const MOCK_HOME_CONTENT = {
         logo: "/assets/logo.png",
         menuIcon: "/assets/menu-icon.svg",
         langLabel: "AR",
-        contactLabel: "تواصل معنا",
+        contactLabel: "  الضمان",
         contactHref: "/contact",
         links: [
             { label: "الرئيسية", href: "/" },
@@ -42,8 +42,6 @@ const MOCK_HOME_CONTENT = {
         warrantyBadge: { src: "/assets/warranty-badge.png", alt: "ختم الضمان" },
     },
     footer: {
-        logoTop: "HEL",
-        logoBottom: "MET",
         links: [
             { label: "الرئيسية", href: "/" },
             { label: "المنتجات", href: "/products" },

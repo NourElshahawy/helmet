@@ -1,4 +1,4 @@
-import "../../styles/provide/provide.css";
+import HeadTitle from "../ui/HeadTitle";
 
 function Provide() {
 
@@ -25,7 +25,8 @@ function Provide() {
         <section className="provide section">
             <div className="main-container">
                 <div className="provide-title">
-                    <h2> ماذا نقدم</h2>
+                    {/* <h2> ماذا نقدم</h2> */}
+                    <HeadTitle value="ماذا نقدم" />
                 </div>
                 <div className="row provide-cards">
                     {provideCards.map((provideCard, index) => (
