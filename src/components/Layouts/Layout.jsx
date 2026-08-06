@@ -1,10 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useHomeContent } from "../../hooks/useHomeContent";
 import Footer from "./Footer/Footer";
 import Navbar from "./Navbar/Navbar";
 
 export default function Layout() {
   const { data, isLoading, isError } = useHomeContent();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   if (isLoading) return <div className="text-center py-5">...جاري التحميل</div>;
   if (isError)
@@ -16,12 +18,11 @@ export default function Layout() {
 
   return (
     <>
-<Navbar nav={data?.nav} />
-    {/* <Navbar nav={} /> */}
-      {/* أي محتوى تاني في الصفحة (منتجات، سكاشن تانية) بيترندر هنا برة الغلاف */}
+      {!isHomePage && <Navbar nav={data?.nav} />}
+
       <Outlet />
 
-      {/* <Footer footer={data?.footer} /> */}
+      <Footer footer={data?.footer} />
     </>
   );
 }

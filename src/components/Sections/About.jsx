@@ -1,6 +1,4 @@
-import "../../styles/about-us/AboutStyle.css";
-
-function About() {
+export default function About() {
 
   const aboutTitle = "من نحن";
   const aboutContent = `في عالم أصبحت فيه الأجهزة الذكية جزءًا أساسيًا من حياتنا اليومية،
@@ -96,5 +94,3 @@ function About() {
     </section>
   );
 }
-
-export default About;

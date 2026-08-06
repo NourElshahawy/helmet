@@ -1,4 +1,3 @@
-import "../../styles/provide/provide.css";
 
 function Provide() {
 

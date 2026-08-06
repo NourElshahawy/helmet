@@ -238,7 +238,12 @@ export default function Hero({ hero }) {
       <p className="hero-desc" ref={descRef}>
         {hero.description}
       </p>
-      <MainBtn value={hero.ctaLabel} className="hero-cta" ref={ctaRef} data-hero-item />
+      <MainBtn
+        value={hero.ctaLabel}
+        className="hero-cta"
+        ref={ctaRef}
+        data-hero-item
+      />
 
       {hero.images?.length > 0 && (
         <div className="hero-gallery" ref={galleryRef}>
@@ -249,6 +254,8 @@ export default function Hero({ hero }) {
               src={img.src}
               alt={img.alt ?? ""}
               className="hero-gallery__layer"
+              width={280}
+              height={380}
               style={{ zIndex: hero.images.length - i }}
               loading="lazy"
             />

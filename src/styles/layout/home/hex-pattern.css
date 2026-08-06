@@ -10,18 +10,17 @@
 .hm-top-section::after {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #EBF1F8 0%, rgba(235, 241, 248, 0) 70%);
-  filter: blur(60px);
+  width: 500px;
+  height: 100vh;
+  border-radius: 0; 
+  background: radial-gradient(ellipse, rgba(235, 241, 248, 0.9) 0%, rgba(235, 241, 248, 0) 70%);
+  filter: blur(30px);
   pointer-events: none;
   z-index: 0;
   animation: hm-blob-float 12s ease-in-out infinite;
 }
 
 .hm-top-section::before {
-  top: 100px;
   right: -200px;
   height: 100vh;
 }
@@ -29,7 +28,6 @@
 .hm-top-section::after {
   bottom: -200px;
   left: -200px;
-  background: radial-gradient(circle, #f0dfae70 0%, rgba(240, 223, 174, 0) 70%);
   animation-delay: -6s;
 }
 

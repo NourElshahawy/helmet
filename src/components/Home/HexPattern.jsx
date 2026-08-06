@@ -1,9 +1,9 @@
-import "../../styles/layout/home/hex-pattern.css";
 
-const ROWS_COLUMNS = [5, 4, 5];
-const HEX_W = 280;
-const HEX_H = 400;
-const HEX_CORNER_RADIUS = 28; // زوّد الرقم ده لانحناء أوضح، قلّليه لانحناء أخف
+const DEFAULT_ROWS = 3;
+const DEFAULT_COLS = 5;
+const DEFAULT_HEX_W = 280;
+const DEFAULT_HEX_H = 400;
+const HEX_CORNER_RADIUS_RATIO = 0.1; // نسبة من الحجم، بدل رقم ثابت، عشان الانحناء يفضل متناسب لو الحجم اتغيّر
 
 function normalize([dx, dy], length) {
   const dist = Math.sqrt(dx * dx + dy * dy);
@@ -42,23 +42,29 @@ function roundedHexPath(w, h, r) {
   return d;
 }
 
-const hexPath = roundedHexPath(HEX_W, HEX_H, HEX_CORNER_RADIUS);
+export default function HexPattern({
+  hexWidth = DEFAULT_HEX_W,
+  hexHeight = DEFAULT_HEX_H,
+  rows = DEFAULT_ROWS,
+  cols = DEFAULT_COLS,
+}) {
+  const cornerRadius = hexWidth * HEX_CORNER_RADIUS_RATIO;
+  const hexPath = roundedHexPath(hexWidth, hexHeight, cornerRadius);
 
-export default function HexPattern() {
   return (
     <div className="hex-pattern" aria-hidden="true">
-      {ROWS_COLUMNS.map((colsInRow, rowIndex) => (
+      {Array.from({ length: rows }).map((_, rowIndex) => (
         <div
           key={rowIndex}
           className={`hex-row ${rowIndex % 2 === 1 ? "hex-row--offset" : ""}`}
         >
-          {Array.from({ length: colsInRow }).map((_, colIndex) => (
+          {Array.from({ length: cols }).map((_, colIndex) => (
             <svg
               key={colIndex}
               className="hex"
-              width={HEX_W}
-              height={HEX_H}
-              viewBox={`0 0 ${HEX_W} ${HEX_H}`}
+              width={hexWidth}
+              height={hexHeight}
+              viewBox={`0 0 ${hexWidth} ${hexHeight}`}
             >
               <path d={hexPath} className="hex__shape" />
             </svg>
