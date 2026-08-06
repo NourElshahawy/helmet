@@ -8,9 +8,11 @@ import Provide from "../../components/Sections/Provide";
 import { useHomeContent } from "../../hooks/useHomeContent";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import Navbar from "../../components/Layouts/Navbar/Navbar";
+import { useHeroContent } from "../../hooks/useHeroContent";
 
 export default function Home() {
   const { data } = useHomeContent();
+  const { data: hero } = useHeroContent();
   const isMobile = useIsMobile();
 
   return (
@@ -25,7 +27,7 @@ export default function Home() {
         />
         <div className="hm-top-section__content">
           <Navbar nav={data?.nav} />
-          <Hero hero={data?.hero} />
+          <Hero hero={hero} />
         </div>
       </div>
       <About />
