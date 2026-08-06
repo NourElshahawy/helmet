@@ -5,6 +5,7 @@
 @import "./styles/responsive.css";
 
 
+@import "./styles/layout/home/hero.css";
 
 
 @import "./styles/about-us/AboutStyle.css";

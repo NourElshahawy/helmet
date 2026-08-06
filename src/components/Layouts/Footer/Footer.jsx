@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import HexPattern from "../../Home/HexPattern";
 import { useIsMobile } from "../../../hooks/useIsMobile";
+import { useHeaderContent } from "../../../hooks/useHeaderContent";
+
+
+
 export default function Footer({ footer }) {
+  const { data: header } = useHeaderContent();
   const isMobile = useIsMobile();
   if (!footer) return null;
   return (
@@ -16,7 +21,7 @@ export default function Footer({ footer }) {
 
       <div className="site-footer__content">
         <Link to="/" className="site-footer__logo">
-          <img src="/assets/logo.png" alt="logo" />
+          <img src={header?.footer_logo} alt={header?.site_name ?? "logo"} />
         </Link>
 
         {footer.links?.length > 0 && (

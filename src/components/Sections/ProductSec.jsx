@@ -10,41 +10,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
+import { useQuery } from "@tanstack/react-query";
+import api from "../../api/axios";
+
 
 
 
 export default function ProductSec({className, showButton = true}) {
-    const products = [
-        {
-            images: [productImg1, productImg2, productImg3],
-            title: "بكج هيلمت توكن",
-            desc: "بكج حماية Token حماية انيقة وشاملة للجوال.",
+    function getProducts() {
+        return api.get("/products?limit=4");
+    }
+
+    const { data, isLoading, isError, error } = useQuery({
+        queryKey: ['getProducts'],
+        queryFn: getProducts,
+
+        select: (data) => {
+            return data.data.data;
         },
-        {
-            images: [productImg2, productImg1, productImg3],
-            title: "استيكر هيلمت شل 360 خصوصية",
-            desc: "كفر نحيف وشفاف بتصميم أنيق، مزود بقطعة إضافية لدعم MagSafe، خفيف الوزن، مريح في الاستخدام ويحافظ على أناقة جهازك.",
-        },
-        {
-            images: [productImg3, productImg3, productImg1],
-            title: "استيكر هيلمت شل 360 خصوصية",
-            desc: "حماية متطورة بخصوصية كاملة من جميع الزوايا 360 درجة."
-        },
-        {
-            images: [productImg4, productImg1, productImg3],
-            title: "استيكر هيلمت شل خصوصية",
-            desc: "حماية شاشة بخصوصية ثنائية الاتجاه تمنع الرؤية الجانبية وتحافظ على خصوصيتك.",
-        },
-    ];
+    });
+
+    // console.log("data:", data?.body);
+    // console.log("images:", data?.body[0].images);
+
 
     return <>
         <section className={`productSec section ${className}`}>
             <div className="main-container">
                 <HeadTitle value="المنتجات" />
                 <div className="row g-4">
-                    {products.map((product, index)=> {
+                    {data?.body?.map((product)=> {
                         return (
-                            <div key={index} className="col-sm-6 col-md-4 col-lg-3">
+                            <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
                                 <div className="cardSlider">
                                     <figure>
                                         <Swiper
@@ -56,8 +53,8 @@ export default function ProductSec({className, showButton = true}) {
                                                 disableOnInteraction: false,
                                             }}
                                             pagination={{ clickable: true }}>
-                                            {product.images.map((img, i) => (
-                                                <SwiperSlide key={i}>
+                                            {product?.images?.map((img) => (
+                                                <SwiperSlide key={product.id}>
                                                     <img src={img} loading="lazy" alt={product.title} />
                                                 </SwiperSlide>
                                             ))}
@@ -65,15 +62,14 @@ export default function ProductSec({className, showButton = true}) {
                                     </figure>
 
                                     <div className="text">
-                                        <h4>{product.title}</h4>
-                                        <p>{product.desc}</p>
+                                        <h4>{product.name}</h4>
+                                        <p>{product.description}</p>
                                     </div>
                                 </div>
                             </div>
                         )
                     })}
                 </div>
-                {/* <MainBtn value="عرض جميع المنتجات" className='mx-auto mt-5' /> */}
 
                 {showButton && (
                     <MainBtn href="/products" value="عرض جميع المنتجات" className='mx-auto mt-5' />

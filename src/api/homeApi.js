@@ -1,24 +1,48 @@
 import api from "./axios";
 
-// بيرجع { nav, hero, footer } — عدّل الـ endpoint حسب الـ backend عندك
+/* ==================== Header (Nav + Footer logos) ==================== */
 
-// بيعمل ايه: فيه function واحدة getHomeContent() بتنادي endpoint معيّن وترجع الداتا.
-// ليه: فصلت "طلب الداتا" عن "استخدام الداتا".الـ component(Navbar / Hero / Footer) متعرفش هي جاية منين ولا إزاي — هو بس بيستقبل props.ده بيخليك لو غيّرت شكل الـ API أو الـ endpoint، تعدّل في الملف ده بس، مش هتلمس أي component.
-
-// export const getHomeContent = async () => {
-//     const { data } = await api.get("/home-content");
-//     return data;
-// };
-
+export const getHeaderContent = async () => {
+    const { data } = await api.get("/home/header", {
+        headers: { "Accept-Language": "ar" },
+    });
+    return data.data; // { site_name, logo, favicon, footer_logo }
+};
 
 
-// ==== بيانات وهمية مؤقتة — هتتشال لما الـ API يجهز ====
+
+
+/* ==================== Hero ==================== */
+export const getHeroContent = async () => {
+    const { data } = await api.get("/home/hero", {
+        headers: { "Accept-Language": "ar" },
+    });
+    const hero = data.data;
+
+    return {
+        title: hero.title,
+        description: hero.description,
+        ctaLabel: "استكشف منتجاتنا", // مفيش في الـ API لسه، قيمة ثابتة مؤقتًا
+        ctaHref: "/products",
+        images: [
+            { src: hero.image_one, alt: "Phone Case" },
+            { src: hero.image_two, alt: "iPhone" },
+            { src: hero.image_three, alt: "Accessory" },
+        ],
+        warrantyBadge: { src: "/assets/warranty-stamp.png", alt: "ختم الضمان" },
+    };
+};
+
+
+
+
+
+
+/* ==================== Home Content (Products + Warranty لسه mock) ==================== */
 const MOCK_HOME_CONTENT = {
     nav: {
-        logo: "/assets/logo.png",
-        menuIcon: "/assets/menu-icon.svg",
         langLabel: "AR",
-        contactLabel: "  الضمان",
+        contactLabel: "تواصل معنا",
         contactHref: "/contact",
         links: [
             { label: "الرئيسية", href: "/" },
@@ -28,18 +52,6 @@ const MOCK_HOME_CONTENT = {
             { label: "الضمان", href: "/warranty" },
             { label: "شروط الضمان", href: "/warranty-terms" },
         ],
-    },
-    hero: {
-        title: "صُمم ليكون مختلفاً",
-        description:
-            "في عالم أصبحت فيه الأجهزة الذكية جزءًا من حياتنا، جاءت HELMET لتقدم حماية حقيقية تواكب قيمة أجهزتك.",
-        ctaLabel: "استكشف منتجاتنا",
-        ctaHref: "/products",
-        images: [
-            { src: "/assets/hero-1.png", alt: "Hero Image 1" },
-            { src: "/assets/hero-2.png", alt: "Hero Image 2" },
-        ],
-        warrantyBadge: { src: "/assets/warranty-badge.png", alt: "ختم الضمان" },
     },
     footer: {
         links: [
@@ -57,16 +69,13 @@ const MOCK_HOME_CONTENT = {
     },
 };
 
-// عدّلي القيمة دي لـ true وقت ما الـ API يبقى شغال فعليًا
 const USE_MOCK_DATA = true;
 
 export const getHomeContent = async () => {
     if (USE_MOCK_DATA) {
-        // بنعمل تأخير بسيط عشان نحاكي شكل الـ loading الحقيقي
         await new Promise((resolve) => setTimeout(resolve, 300));
         return MOCK_HOME_CONTENT;
     }
-
     const { data } = await api.get("/home-content");
     return data;
 };

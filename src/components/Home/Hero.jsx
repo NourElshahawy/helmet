@@ -1,8 +1,7 @@
 import { useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
-import "../../styles/layout/home/hero.css";
-
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import {
   ENTRANCE_DURATION,
@@ -33,7 +32,6 @@ import {
   STAMP_ROTATE_END,
   STAMP_SCALE_START,
 } from "./heroAnimation.constants";
-import { ScrollTrigger } from "gsap/all";
 import MainBtn from "../ui/MainBtn";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -45,7 +43,7 @@ export default function Hero({ hero }) {
   const ctaRef = useRef(null);
   const galleryRef = useRef(null);
   const stampRef = useRef(null);
-  const layerRefs = useRef([]); // مصفوفة بكل عناصر الصور
+  const layerRefs = useRef([]); 
   layerRefs.current = [];
 
   const addLayerRef = (el) => {
@@ -57,8 +55,6 @@ export default function Hero({ hero }) {
   useLayoutEffect(() => {
     if (!hero?.images?.length) return;
 
-    // gsap.context() بيجمع كل الأنيميشن والـ ScrollTrigger اللي بننشئها هنا
-    // عشان نقدر ننضفها كلها بسطر واحد وقت الـ unmount
     const ctx = gsap.context(() => {
       const layers = layerRefs.current;
       const isMobile = window.innerWidth < 640;
@@ -72,7 +68,6 @@ export default function Hero({ hero }) {
       ].filter(Boolean);
       gsap.set(textEls, { opacity: 0, y: TEXT_Y_START });
 
-      // ---------- 1) الحالة الابتدائية للصور (متراكبة فوق بعض) ----------
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
         gsap.set(layer, {
@@ -95,7 +90,6 @@ export default function Hero({ hero }) {
         });
       }
 
-      // ---------- 2) Timeline رئيسي: Text ثم Explode ثم Converge ثم Stamp ----------
       const entranceTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -106,7 +100,7 @@ export default function Hero({ hero }) {
         onComplete: startFloatingLoop,
       });
 
-      // مرحلة 0: دخول النص (العنوان + الوصف + الزرار)
+      // مرحلة 0: دخول النص
       entranceTl.to(
         textEls,
         {
@@ -119,7 +113,6 @@ export default function Hero({ hero }) {
         0,
       );
 
-      // مرحلة 1: انفجار بعيد عن المنتصف
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
         entranceTl.to(
@@ -138,7 +131,6 @@ export default function Hero({ hero }) {
         );
       });
 
-      // مرحلة 2: تقارب ناعم لموقعهم النهائي
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
         entranceTl.to(
@@ -152,7 +144,6 @@ export default function Hero({ hero }) {
         );
       });
 
-      // مرحلة 3: الختم يدمغ بعد ما الموبايلين يستقروا
       if (stampRef.current) {
         entranceTl.to(
           stampRef.current,
@@ -167,7 +158,6 @@ export default function Hero({ hero }) {
         );
       }
 
-      // ---------- 3) Floating loop مستمر لكل طبقة، بسرعة مختلفة ----------
       const floatTweens = [];
 
       function startFloatingLoop() {
@@ -184,7 +174,6 @@ export default function Hero({ hero }) {
         });
       }
 
-      // ---------- 4) Parallax مع حركة الماوس (quickTo لأداء عالي) ----------
       const quickSetters = layers.map((layer) => ({
         x: gsap.quickTo(layer, "x", {
           duration: PARALLAX_QUICKTO_DURATION,
@@ -217,14 +206,12 @@ export default function Hero({ hero }) {
 
       galleryRef.current?.addEventListener("mousemove", handleMouseMove);
 
-      // تنظيف الـ event listener والـ floating tweens عند إعادة تشغيل الـ context
       return () => {
         galleryRef.current?.removeEventListener("mousemove", handleMouseMove);
         floatTweens.forEach((t) => t.kill());
       };
     }, sectionRef);
 
-    // تنظيف كل حاجة (timelines + ScrollTrigger + listeners) وقت الـ unmount
     return () => ctx.revert();
   }, [hero]);
 
@@ -238,16 +225,15 @@ export default function Hero({ hero }) {
       <p className="hero-desc" ref={descRef}>
         {hero.description}
       </p>
-      <MainBtn
-        value={hero.ctaLabel}
-        className="hero-cta"
-        ref={ctaRef}
-        data-hero-item
-      />
+
+      <div className="hero-cta">
+        <MainBtn value={hero.ctaLabel} href={hero.ctaHref} data-hero-item />
+      </div>
+
 
       {hero.images?.length > 0 && (
         <div className="hero-gallery" ref={galleryRef}>
-          {hero.images.map((img, i) => (
+          {hero.images.slice(0, 2).map((img, i) => (
             <img
               key={img.src ?? i}
               ref={addLayerRef}
@@ -260,11 +246,12 @@ export default function Hero({ hero }) {
               loading="lazy"
             />
           ))}
-          {hero.warrantyBadge && (
+
+          {hero.images[2] && (
             <img
               ref={stampRef}
-              src={hero.warrantyBadge.src}
-              alt={hero.warrantyBadge.alt ?? "ختم الضمان"}
+              src={hero.images[2].src}
+              alt={hero.images[2].alt ?? ""}
               className="hero-gallery__stamp"
             />
           )}
