@@ -21,11 +21,12 @@ export default function Home() {
           <Hero hero={data?.hero} />
         </div>
       </div>
+      <About />
+      <Provide />
+
       <ProductSec />
       <Warranty />
       <ContactUsSec />
-      <About />
-      <Provide />
     </>
   );
 }

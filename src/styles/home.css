@@ -71,6 +71,9 @@
     background: linear-gradient(to left, var(--main-color), var(--second-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+    animation: gradientText 4s linear infinite;
 }
 .warranty .main-container .text p {
     font-size: clamp(18px, 3vw, 30px);
