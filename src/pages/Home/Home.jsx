@@ -5,10 +5,10 @@ import ProductSec from '../../components/Sections/ProductSec';
 import ContactUsSec from "../../components/Sections/ContactUsSec";
 
 export default function Home() {
-    const { hero } = useOutletContext();
+    // const { hero } = useOutletContext();
 
     return <>
-        <Hero hero={hero} />
+        <Hero />
         <ProductSec />
         <Warranty />
         <ContactUsSec />

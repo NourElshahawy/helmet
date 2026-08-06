@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <>
+  <>
     {/* <Toaster position="top-right" richColors closeButton/> */}
     <RouterProvider router={router}></RouterProvider> {/* React Router خاص بـ Provider ده */}
     </>
