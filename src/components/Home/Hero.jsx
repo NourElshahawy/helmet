@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 import {
   ENTRANCE_DURATION,
   ENTRANCE_EASE,
@@ -33,6 +32,7 @@ import {
   STAMP_ROTATE_END,
   STAMP_SCALE_START,
 } from "./heroAnimation.constants";
+import MainBtn from "../ui/MainBtn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,7 +43,7 @@ export default function Hero({ hero }) {
   const ctaRef = useRef(null);
   const galleryRef = useRef(null);
   const stampRef = useRef(null);
-  const layerRefs = useRef([]); // بس أول صورتين (اللي عليهم GSAP)
+  const layerRefs = useRef([]); 
   layerRefs.current = [];
 
   const addLayerRef = (el) => {
@@ -68,7 +68,6 @@ export default function Hero({ hero }) {
       ].filter(Boolean);
       gsap.set(textEls, { opacity: 0, y: TEXT_Y_START });
 
-      // ---------- 1) الحالة الابتدائية للصور المتحركة (أول صورتين بس) ----------
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
         gsap.set(layer, {
@@ -91,7 +90,6 @@ export default function Hero({ hero }) {
         });
       }
 
-      // ---------- 2) Timeline رئيسي: Text ثم Explode ثم Converge ثم Stamp ----------
       const entranceTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -115,7 +113,6 @@ export default function Hero({ hero }) {
         0,
       );
 
-      // مرحلة 1: انفجار أول صورتين بعيد عن المنتصف
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
         entranceTl.to(
@@ -134,7 +131,6 @@ export default function Hero({ hero }) {
         );
       });
 
-      // مرحلة 2: تقارب ناعم لموقعهم النهائي
       layers.forEach((layer, i) => {
         const config = HERO_LAYERS_CONFIG[i] ?? HERO_LAYERS_CONFIG[0];
         entranceTl.to(
@@ -148,7 +144,6 @@ export default function Hero({ hero }) {
         );
       });
 
-      // مرحلة 3: الختم يدمغ بعد ما الصورتين يستقروا
       if (stampRef.current) {
         entranceTl.to(
           stampRef.current,
@@ -163,7 +158,6 @@ export default function Hero({ hero }) {
         );
       }
 
-      // ---------- 3) Floating loop لأول صورتين بس ----------
       const floatTweens = [];
 
       function startFloatingLoop() {
@@ -180,7 +174,6 @@ export default function Hero({ hero }) {
         });
       }
 
-      // ---------- 4) Parallax لأول صورتين بس ----------
       const quickSetters = layers.map((layer) => ({
         x: gsap.quickTo(layer, "x", {
           duration: PARALLAX_QUICKTO_DURATION,
@@ -232,14 +225,14 @@ export default function Hero({ hero }) {
       <p className="hero-desc" ref={descRef}>
         {hero.description}
       </p>
-      <Link to={hero.ctaHref} className="main-btn hero-cta" ref={ctaRef}>
-        <i className="fa-solid fa-chevron-left"></i>
-        {hero.ctaLabel}
-      </Link>
+
+      <div className="hero-cta">
+        <MainBtn value={hero.ctaLabel} href={hero.ctaHref} data-hero-item />
+      </div>
+
 
       {hero.images?.length > 0 && (
         <div className="hero-gallery" ref={galleryRef}>
-          {/* أول صورتين بس عليهم أنيميشن GSAP (انفجار + تقارب + تعويم + باراللاكس) */}
           {hero.images.slice(0, 2).map((img, i) => (
             <img
               key={img.src ?? i}
@@ -253,17 +246,6 @@ export default function Hero({ hero }) {
               loading="lazy"
             />
           ))}
-
-          {/* {hero.images[2] && (
-            <img
-              src={hero.images[2].src}
-              alt={hero.images[2].alt ?? ""}
-              className="hero-gallery__static"
-              width={280}
-              height={380}
-              loading="lazy"
-            />
-          )} */}
 
           {hero.images[2] && (
             <img
