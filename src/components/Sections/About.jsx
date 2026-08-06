@@ -1,13 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import { getAbout } from "../../api/about";
+
+
+
+
+
+
 export default function About() {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["getAbout"],
+    queryFn: getAbout,
+    select: (data) => data.data,
+  });
+
+  if (isLoading) return <p>جاري التحميل...</p>;
+  if (isError) return <p>حصل خطأ: {error.message}</p>;
+
 
   const aboutTitle = "من نحن";
-  const aboutContent = `في عالم أصبحت فيه الأجهزة الذكية جزءًا أساسيًا من حياتنا اليومية،
-  وُلدت HELMET بفكرة بسيطة لكنها قوية: تقديم حماية حقيقية تواكب قيمة
-  الأجهزة التي نستخدمها. منذ تأسيس البراند عام 2018، وضعت HELMET
-  هدفًا واضحًا وهو أن تصبح علامة موثوقة في عالم حماية الأجهزة
-  الذكية. لذلك ركزنا منذ البداية على تطوير منتجات تجمع بين القوة في
-  الحماية، والدقة في التصميم، والجودة في التصنيع.`; 
   
+
   const statistics = [
     {
       value: "1,500,000",
@@ -27,28 +39,6 @@ export default function About() {
   ];
 
 
-
-
-  const features = [
-    {
-      title: "حلول حماية متكاملة",
-      description:
-        "نطور حلول حماية متكاملة، تشمل استيكرات الشاشة والكفرات وبكجات الحماية الشاملة لضمان أعلى مستوى من الأمان لجهازك.",
-        image: "feature-item-img1.svg",
-    },
-    {
-      title: "الجودة التي نصنع بها الثقة  ",
-      description:
-        "نستخدم مواد عالية الجودة وتقنيات تصنيع متطورة لنقدم حماية موثوقة تجمع بين الأداء والمتانة.",
-        image: "feature-item-img2.svg",
-    },
-    {
-      title: "رؤيتنا للمستقبل",
-      description:
-        "نواصل الابتكار وتطوير حلول حماية تواكب تطور الأجهزة الذكية وتلبي احتياجات عملائنا.",
-        image: "feature-item-img3.svg",
-    },
-  ];
   return (
     <section className="about section">
       <div className="about-content">
@@ -57,36 +47,54 @@ export default function About() {
             <div className="about-content-title">   
               <h1> {aboutTitle} </h1>
               <p>
-                {aboutContent}
+                {data?.description}
               </p>
             </div>
             
             <div className="statistics">
-              {statistics.map((statistic, index) => (
-                <div key={index} className="statistic-item">
+                <div  className="statistic-item">
                   <div className="statistic-item-icon">
-                    <img src={`../src/assets/images/${statistic.icon}`} />
+                    <img src={`../src/assets/images/${statistics[0].icon}`} />
                   </div>
                   <div className="statistic-item-content">
-                    <h3>{statistic.value}</h3>
-                    <p>{statistic.description}</p>
+                    <h3>{data?.buyer_count}</h3>
+                    <p>{statistics[0].description}</p>
                   </div>
                 </div>
-              ))}
-              
+                  
+                <div  className="statistic-item">
+                  <div className="statistic-item-icon">
+                    <img src={`../src/assets/images/${statistics[1].icon}`} />
+                  </div>
+                  <div className="statistic-item-content">
+                    <h3>{data?.point_of_sale_count}</h3>
+                    <p>{statistics[1].description}</p>
+                  </div>
+                </div>
+                  
+                <div  className="statistic-item">
+                  <div className="statistic-item-icon">
+                    <img src={`../src/assets/images/${statistics[2].icon}`} />
+                  </div>
+                  <div className="statistic-item-content">
+                    <h3>{data?.year_count}</h3>
+                    <p>{statistics[2].description}</p>
+                  </div>
+                </div>
+                  
             </div>
           </div>
           <div className="col-md-5">
             <div className="our-features">
-              {features.map((feature, index) => (
-                <div key={index} className="feature-item">
+              {data?.features.map((feature) => (
+                <div  className="feature-item">
                   <div className="feature-item-img">
-                    <img src={`../src/assets/images/${feature.image}`} />
+                    <img src={`../src/assets/images/${feature.icon}`} />
                   </div>
                   <h3>{feature.title}</h3>
                   <p>{feature.description}</p>
                 </div>
-              ))}
+              ))}  
             </div>
           </div>
         </div>
