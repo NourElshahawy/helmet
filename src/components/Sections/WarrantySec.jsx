@@ -8,8 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 export default function WarrantySec() {
   const isMobile = useIsMobile();
 
-
-
     function getWarranty() {
         return api.get("/home/warranty");
     }
@@ -23,15 +21,7 @@ export default function WarrantySec() {
         },
     });
 
-    console.log(data);
-
-
-
-
-
-
-
-
+    // console.log(data);
 
   return (
     <>
@@ -43,7 +33,6 @@ export default function WarrantySec() {
             rowsColumns={isMobile ? undefined : [8, 7, 8]}
             cols={isMobile ? 8 : undefined}
             rows={isMobile ? 8 : undefined}/>
-
 
           <div className="text">
             <h3>{data?.title}</h3>
