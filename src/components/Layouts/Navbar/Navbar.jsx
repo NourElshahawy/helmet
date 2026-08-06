@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useNavbarEntrance } from "./navbarAnimation";
 import "../../../styles/layout/navbar.css";
+import MainBtn from "../../ui/MainBtn";
 
 export default function Navbar({ nav }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,14 +13,16 @@ export default function Navbar({ nav }) {
     <header className="navbar" ref={navRef}>
       <div className="navbar-container">
         <div className="group-btn">
-          <button type="button" className="main-btn" data-nav-item>
-            <i className="fa-solid fa-globe"></i>
-            {nav.langLabel}
-          </button>
-          <Link to={nav.contactHref} className="main-btn" data-nav-item>
-            <i className="fa-solid fa-chevron-left"></i>
-            {nav.contactLabel}
-          </Link>
+          <MainBtn
+            value={nav.contactLabel}
+            className="mx-auto mt-5"
+            data-nav-item
+          />
+          <MainBtn
+            value={nav.langLabel}
+            className="mx-auto mt-5"
+            data-nav-item
+          />
         </div>
 
         <Link to="/" className="logo" data-nav-item>
@@ -33,18 +36,14 @@ export default function Navbar({ nav }) {
             aria-expanded={isMenuOpen}
             aria-label="فتح القائمة"
             onClick={() => setIsMenuOpen((open) => !open)}
-            data-nav-item
           >
             <img src="/assets/menu-icon.svg" alt="menu" className="menu-icon" />
           </button>
         )}
       </div>
-      
 
       {nav.links?.length > 0 && (
         <>
-          
-
           {/* القايمة المنزلقة نفسها */}
           <nav className={`navbar-drawer ${isMenuOpen ? "is-open" : ""}`}>
             {nav.links.map((link) => (
@@ -52,9 +51,9 @@ export default function Navbar({ nav }) {
                 key={link.href}
                 to={link.href}
                 className="navbar-drawer__link"
-                data-nav-item
                 onClick={() => setIsMenuOpen(false)}
               >
+                <span className="navbar-drawer__link-shine" />
                 {link.label}
               </Link>
             ))}

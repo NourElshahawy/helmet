@@ -22,6 +22,7 @@
 body {
     font-family: "font_main", sans-serif;
     direction: rtl;
+    overflow-x: hidden;
 }
 
 ::selection {
@@ -86,7 +87,7 @@ h5,
 h6,
 p,
 figure {
-    margin: 0;
+    margin: 0 !important;
 }
 
 img {
@@ -102,6 +103,7 @@ img {
 
 .section {
     margin-block: 80px;
+    overflow: hidden;
 }
 
 /* ====== Main Btn ======*/

@@ -17,6 +17,8 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  background-size: 300% 100%;
+      animation: gradientText 4s linear infinite;
   -webkit-text-fill-color: transparent;
 }
 
@@ -25,7 +27,7 @@
   font-weight: 500;
   color: #000000E5;
   max-width: 640px;
-  margin: 0 auto 28px;
+  margin: 0 auto 28px !important;
 }
 
 .hero-cta {

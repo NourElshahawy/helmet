@@ -1,4 +1,4 @@
-import "../../styles/home/hex-pattern.css";
+import "../../styles/layout/home/hex-pattern.css";
 
 const ROWS_COLUMNS = [5, 4, 5];
 const HEX_W = 280;

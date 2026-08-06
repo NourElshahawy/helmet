@@ -1,9 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar/Navbar";
-import Hero from "../Home/Hero";
-import HexPattern from "../Home/HexPattern";
 import { useHomeContent } from "../../hooks/useHomeContent";
 import Footer from "./Footer/Footer";
+import Navbar from "./Navbar/Navbar";
 
 export default function Layout() {
   const { data, isLoading, isError } = useHomeContent();
@@ -18,14 +16,8 @@ export default function Layout() {
 
   return (
     <>
-      <div className="hm-top-section">
-        <HexPattern />
-        <div className="hm-top-section__content">
-          <Navbar nav={data?.nav} />
-          <Hero hero={data?.hero} />
-        </div>
-      </div>
-
+<Navbar nav={data?.nav} />
+    {/* <Navbar nav={} /> */}
       {/* أي محتوى تاني في الصفحة (منتجات، سكاشن تانية) بيترندر هنا برة الغلاف */}
       <Outlet />
 
