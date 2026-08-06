@@ -18,7 +18,7 @@ const MOCK_HOME_CONTENT = {
         logo: "/assets/logo.png",
         menuIcon: "/assets/menu-icon.svg",
         langLabel: "AR",
-        contactLabel: "تواصل معنا",
+        contactLabel: "  الضمان",
         contactHref: "/contact",
         links: [
             { label: "الرئيسية", href: "/" },

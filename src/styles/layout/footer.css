@@ -6,6 +6,29 @@
   padding: 40px 24px 0;
 }
 
+.site-footer::before,
+.site-footer::after {
+  content: "";
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    border-radius: 50%;
+    background: #92989f81;
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.site-footer::before {
+  top: -150px;
+  right: -150px;
+}
+
+.site-footer::after {
+  bottom: -150px;
+  left: -150px;
+}
+
 .site-footer__content {
   position: relative;
   z-index: 1;

@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import HexPattern from "../../Home/HexPattern";
-import { useIsMobile } from '../../../hooks/useIsMobile';
+import { useIsMobile } from "../../../hooks/useIsMobile";
 export default function Footer({ footer }) {
   const isMobile = useIsMobile();
   if (!footer) return null;
   return (
     <footer className="site-footer">
-      <HexPattern hexWidth={isMobile ? 90 : 160} hexHeight={isMobile ? 130 : 230} cols={isMobile ? 8 : 8} rows={isMobile ? 8 : 3} />
+      <HexPattern
+        hexWidth={isMobile ? 90 : 160}
+        hexHeight={isMobile ? 130 : 200}
+        rowsColumns={isMobile ? undefined : [8, 7, 8]}
+        cols={isMobile ? 8 : undefined}
+        rows={isMobile ? 8 : undefined}
+      />
 
       <div className="site-footer__content">
         <Link to="/" className="site-footer__logo">

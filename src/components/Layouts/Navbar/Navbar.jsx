@@ -17,12 +17,12 @@ export default function Navbar({ nav }) {
       <div className="navbar-container">
         <div className="group-btn">
           <MainBtn
-            value={nav.contactLabel}
+            value={nav.langLabel}
             className="mx-auto mt-5"
             data-nav-item
           />
           <MainBtn
-            value={nav.langLabel}
+            value={nav.contactLabel}
             className="mx-auto mt-5"
             data-nav-item
           />

@@ -19,8 +19,9 @@ export default function Home() {
         <HexPattern
           hexWidth={isMobile ? 90 : 280}
           hexHeight={isMobile ? 130 : 400}
-          rows={isMobile ? 8 : 3}
-          cols={isMobile ? 6 : 5}
+          rowsColumns={isMobile ? undefined : [5, 4, 5]}
+          rows={isMobile ? 8 : undefined}
+          cols={isMobile ? 6 : undefined}
         />
         <div className="hm-top-section__content">
           <Navbar nav={data?.nav} />
