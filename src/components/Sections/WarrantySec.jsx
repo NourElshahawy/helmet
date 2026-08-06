@@ -23,7 +23,7 @@ export default function WarrantySec() {
         },
     });
 
-    // console.log(data);
+    console.log(data);
 
 
 

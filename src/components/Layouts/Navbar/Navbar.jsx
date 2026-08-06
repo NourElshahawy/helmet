@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useNavbarEntrance } from "./navbarAnimation";
 import MainBtn from "../../ui/MainBtn";
-
+import { useHeaderContent } from "../../../hooks/useHeaderContent";
 
 
 export default function Navbar({ nav }) {
+  const { data: header } = useHeaderContent();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef(null);
   useNavbarEntrance(navRef);
@@ -29,7 +30,7 @@ export default function Navbar({ nav }) {
         </div>
 
         <Link to="/" className="logo" data-nav-item>
-          <img src="/assets/logo.png" alt="logo" />
+          <img src={header?.logo} alt={header?.site_name ?? "logo"} />
         </Link>
 
         {nav.links?.length > 0 && (
