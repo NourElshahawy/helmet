@@ -7,7 +7,7 @@ function Provide() {
         {
             title: "حماية 360°",
             description: "تصميم يوفر تغطية كاملة لجهازك ويحميه من الصدمات والخدوش من جميع الزوايا.",
-        },  
+        },
         {
             title: "سهولة التركيب",
             description: "نظام تركيب سريع بدون فقاعات مع دليل واضح وأدوات مرفقة.",
@@ -22,21 +22,20 @@ function Provide() {
         },
     ];
     return (
-            <section className="provide section">
+        <section className="provide section">
             <div className="main-container">
                 <div className="provide-title">
                     <h2> ماذا نقدم</h2>
                 </div>
-                <div className="row provide-cards ">
-                   {provideCards.map((provideCard, index) => (
-                    <div key={index} className=" provide-card">
-                        <h4> {provideCard.title} </h4>
-                        <p>
-                        {provideCard.description}
-                        </p>
-
-                   </div>
-                   ))}
+                <div className="row provide-cards">
+                    {provideCards.map((provideCard, index) => (
+                        <div key={index} className=" provide-card">
+                            <h4> {provideCard.title} </h4>
+                            <p>
+                                {provideCard.description}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

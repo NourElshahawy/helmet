@@ -1,10 +1,10 @@
 import React from 'react';
 import MainBtn from '../ui/MainBtn';
 
-export default function Warranty() {
+export default function WarrantySec() {
     return <>
 
-        <section className='warranty section'>
+        <section className='WarrantySec section'>
             <div className="main-container">
                 <div className="text">
                     <h3>ضمان HELMET لراحة بالك</h3>

@@ -9,6 +9,8 @@ export default function Navbar({ nav }) {
   const navRef = useRef(null);
   useNavbarEntrance(navRef);
   if (!nav) return null;
+
+
   return (
     <header className="navbar" ref={navRef}>
       <div className="navbar-container">

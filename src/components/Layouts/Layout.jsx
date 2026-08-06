@@ -16,11 +16,9 @@ export default function Layout() {
 
   return (
     <>
-<Navbar nav={data?.nav} />
-    {/* <Navbar nav={} /> */}
+      <Navbar nav={data?.nav} />
       {/* أي محتوى تاني في الصفحة (منتجات، سكاشن تانية) بيترندر هنا برة الغلاف */}
       <Outlet />
-
       {/* <Footer footer={data?.footer} /> */}
     </>
   );

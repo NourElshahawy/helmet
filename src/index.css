@@ -122,6 +122,9 @@ img {
     transition: all 0.4s ease;
     z-index: 1;
 }
+.main-btn i {
+    font-size: 15px;
+}
 
 /* shine effect */
 .main-btn::before {
@@ -184,6 +187,19 @@ img {
 .input-group input::placeholder {
     font-size: 20px;
 }
+.input-group .input-box .search-icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(to left, var(--main-color), var(--second-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.input-group .input-box input {
+    padding-right: 30px;
+}
+
 .input-group .custom-select select {
     appearance: none;
 }
@@ -241,6 +257,11 @@ img {
     height: 5px;
     background-color: rgba(213, 189, 133, 1);
     animation: linePulse 1.5s ease-in-out infinite;
+}
+
+.title p {
+    font-size: 22px;
+    font-family: "font_bold";
 }
 
 @keyframes titleFloat {
