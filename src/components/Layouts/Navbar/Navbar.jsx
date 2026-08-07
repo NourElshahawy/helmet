@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useNavbarEntrance } from "./navbarAnimation";
 import MainBtn from "../../ui/MainBtn";
 import { useHeaderContent } from "../../../hooks/useHeaderContent";
-
+import menuIcon from "../../../assets/images/menu-icon.svg";
 
 export default function Navbar({ nav }) {
   const { data: header } = useHeaderContent();
@@ -21,6 +21,7 @@ export default function Navbar({ nav }) {
             value={nav.langLabel}
             className="mx-auto mt-5"
             data-nav-item
+            icon={<i className="fa-solid fa-globe" style={{ fontSize: "16px", paddingRight: "5px" }}></i>}
           />
           <MainBtn
             value={nav.contactLabel}
@@ -32,18 +33,6 @@ export default function Navbar({ nav }) {
         <Link to="/" className="logo" data-nav-item>
           <img src={header?.logo} alt={header?.site_name ?? "logo"} />
         </Link>
-
-        {nav.links?.length > 0 && (
-          <button
-            type="button"
-            className={`navbar-menu-toggle ${isMenuOpen ? "is-open" : ""}`}
-            aria-expanded={isMenuOpen}
-            aria-label="فتح القائمة"
-            onClick={() => setIsMenuOpen((open) => !open)}
-          >
-            <img src="/assets/menu-icon.svg" alt="menu" className="menu-icon" />
-          </button>
-        )}
       </div>
 
       {nav.links?.length > 0 &&
@@ -56,11 +45,7 @@ export default function Navbar({ nav }) {
               aria-label="فتح القائمة"
               onClick={() => setIsMenuOpen((open) => !open)}
             >
-              <img
-                src="/assets/menu-icon.svg"
-                alt="menu"
-                className="menu-icon"
-              />
+              <img src={menuIcon} alt="menu-icon" className="menu-icon" />
             </button>
 
             <nav className={`navbar-drawer ${isMenuOpen ? "is-open" : ""}`}>
@@ -78,7 +63,11 @@ export default function Navbar({ nav }) {
 
               <div className="group-btn-drawer">
                 <MainBtn value={nav.contactLabel} data-nav-item />
-                <MainBtn value={nav.langLabel} data-nav-item />
+                <MainBtn
+                  value={nav.langLabel}
+                  data-nav-item
+                  icon={<i className="fa-solid fa-globe"></i>}
+                />{" "}
               </div>
             </nav>
           </>,

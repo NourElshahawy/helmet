@@ -6,8 +6,9 @@
 
 
 @import "./styles/layout/home/hero.css";
+@import "./styles/ui/form.css";
 
-
+@import "./styles/ui/warranty-status-modal.css";
 @import "./styles/about-us/AboutStyle.css";
 /* @import "./styles/products/products.css"; */
 @import "./styles/provide/provide.css";

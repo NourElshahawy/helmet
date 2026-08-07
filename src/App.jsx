@@ -7,6 +7,10 @@ import { useEffect } from "react";
 import { useHeaderContent } from "./hooks/useHeaderContent";
 import WhereToFindUs from "./pages/WhereToFindUs/WhereToFindUs";
 import Warranty from "./pages/Warranty/Warranty";
+import ActivateWarrantyForm from "./pages/Warranty/ActivateWarrantyForm";
+import SubmitCompensationForm from './pages/Warranty/SubmitCompensationForm';
+import CheckWarrantyStatusForm from './pages/Warranty/CheckWarrantyStatusForm';
+import { Toaster } from "sonner";
 
 
 const router = createBrowserRouter([
@@ -19,6 +23,9 @@ const router = createBrowserRouter([
     {path: "contactUs", element:<ContactUs />},
     {path: "warranty", element:<Warranty />},
     {path: "whereToFindUs", element:<WhereToFindUs />},
+    {path: "activateWarranty", element:<ActivateWarrantyForm />},
+    { path: "compensation", element: <SubmitCompensationForm /> },
+    { path: "checkWarrantyStatus", element: <CheckWarrantyStatusForm /> },
     ],
   },
 ]);
@@ -39,7 +46,7 @@ export default function App() {
 
   return (
     <>
-      {/* <Toaster position="top-right" richColors closeButton/> */}
+      <Toaster position="top-right" richColors closeButton />
       <RouterProvider router={router}></RouterProvider>
     </>
   );
